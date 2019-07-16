@@ -40,3 +40,7 @@ jobs:
 
       # run tests!
       - run: gradle test jacocoTestReport
+
+      # output test results
+      - store_test_results:
+        path: /tmp/test-results
