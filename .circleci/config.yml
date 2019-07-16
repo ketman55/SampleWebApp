@@ -43,5 +43,5 @@ jobs:
 
       # output test results
       - store_test_results:
-          path: ~/SampleWebApp/build/test-results
+          path: ~/repo/build/test-results
             
