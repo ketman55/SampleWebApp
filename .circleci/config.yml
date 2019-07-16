@@ -43,4 +43,9 @@ jobs:
 
       # output test results
       - store_test_results:
+<<<<<<< HEAD
           path:  ~/build/test-results
+=======
+          path: 
+            - ~/build/test-results
+>>>>>>> refs/remotes/origin/master
