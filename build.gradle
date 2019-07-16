@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
+
+group = 'com.lab.app.ketman'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// for service
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// for development
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// for test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile "org.codehaus.groovy:groovy-all:2.4.15"
+	testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+	testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+
+	// for documentation
+	compile "io.springfox:springfox-swagger2:2.9.2"
+	compile 'io.springfox:springfox-swagger-ui:2.9.2'  // Swagger UIを利用するため
+}
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.lab.app.ketman.SampleWebAppApplication'
+	}
+}
