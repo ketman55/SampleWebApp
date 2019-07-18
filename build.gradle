@@ -7,10 +7,6 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
 
-jacoco {
-	reportsDir = file('build/test-results')
-}
-
 group = 'com.lab.app.ketman'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'

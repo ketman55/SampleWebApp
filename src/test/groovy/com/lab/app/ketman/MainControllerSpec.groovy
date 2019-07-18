@@ -1,5 +1,11 @@
 package com.lab.app.ketman
+import static groovyx.net.http.ContentType.*
+
+import org.apache.http.client.HttpResponseException
+
+import groovyx.net.http.RESTClient
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class MainControllerSpec  extends Specification {
 
