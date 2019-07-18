@@ -42,6 +42,8 @@ jobs:
       - run: gradle test jacocoTestReport
 
       # output test results
+      - store_artifacts:
+          path: ~/repo/build/reports/jacoco
       - store_test_results:
           path: ~/repo/build/test-results
             
