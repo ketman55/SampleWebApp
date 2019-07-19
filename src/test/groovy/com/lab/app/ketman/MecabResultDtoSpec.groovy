@@ -14,4 +14,10 @@ class MecabResultDtoSpec  extends Specification {
 		thrown(IllegalArgumentException)
 	}
 
+	def "引数に空のリストが与えられた場合に空のDTOを返すテスト"() {
+		setup:
+		String list = []
+		expect:
+		new MecabResultDto(list).asBoolean() == true
+	}
 }
