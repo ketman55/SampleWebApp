@@ -14,10 +14,29 @@ class MecabResultDtoSpec  extends Specification {
 		thrown(IllegalArgumentException)
 	}
 
-	def "引数に空のリストが与えられた場合に空のDTOを返すテスト"() {
+	def "引数に空のリストが与えられた場合に全項目空文字の入ったDTOを返すテスト"() {
 		setup:
 		String list = []
-		expect:
-		new MecabResultDto(list).asBoolean() == true
+		when:
+		def mrd = new MecabResultDto(list)
+		then:
+		mrd.getKanaAppearanceForm() == ""
+		mrd.getKanaBasicForm() == ""
+		mrd.getLexicalElement() == ""
+		mrd.getLexicalElementReading() == ""
+		mrd.getOriginal() == ""
+		mrd.getPartOfSpeechMain() == ""
+		mrd.getPartOfSpeechSub1() == ""
+		mrd.getPartOfSpeechSub2() == ""
+		mrd.getPartOfSpeechSub3() == ""
+		mrd.getPronunciationAppearanceForm() == ""
+		mrd.getPronunciationBasicForm() == ""
+		mrd.getSurface() == ""
+		mrd.getUtilizationForm() == ""
+		mrd.getUtilizationType() == ""
+		mrd.getWordBasicForm() == ""
+		mrd.getWordType() == ""
+		mrd.getWritingShapeBasicForm() == ""
+		mrd.getWritingShapeSurfaceForm() == ""
 	}
 }
