@@ -23,9 +23,13 @@ repositories {
 }
 
 dependencies {
-	// for service
+	// for using web service
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// for using @Data annotation
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
 	// for development
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

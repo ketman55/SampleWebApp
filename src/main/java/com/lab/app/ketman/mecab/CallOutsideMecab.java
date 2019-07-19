@@ -10,10 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.lab.app.ketman.dto.MecabResultDto;
 
-/**
-呼び出し元で 引数を好きなだけ入れて呼び出す。
-Ex) execute(new String[]{"ping","111,222,33,4"});
- */
 @Service
 public class CallOutsideMecab {
 	ArrayList<MecabResultDto> resultList = new ArrayList<MecabResultDto>();
