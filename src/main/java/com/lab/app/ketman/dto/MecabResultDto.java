@@ -36,7 +36,7 @@ public class MecabResultDto{
 		// AllDataに引数の値を設定
 		for(int i = 0; i < data.length; i++) {
 			// リストが空の場合は終了。また、解析結果は18項目以上存在するが、現状は17で足切る。
-			if(i == 18 || data.length == 1) break;
+			if(i == 18) break;
 			// nullまたは*のデータは捨てる
 			if(data[i] == null || data[i].equals("*") ) {
 
