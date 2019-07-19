@@ -15,6 +15,9 @@ public class CallOutsideMecab {
 	ArrayList<MecabResultDto> resultList = new ArrayList<MecabResultDto>();
 
 	public List<MecabResultDto> execute(String inputText) throws Exception{
+		// 引数の妥当性を確認
+		if(checkInputText(inputText) == false)throw new IllegalArgumentException("inputText is null");
+
 		// mecabにかける
 		// Windowsの場合は cmd /c
 		//String[] command = {"cmd", "/c", "echo", inputText,"|", "mecab", "-d", "src\\main\\resources\\UniDic-wabun_1603"};
@@ -52,9 +55,41 @@ public class CallOutsideMecab {
 		}
 
 		// 外部プロセスが異常終了した場合は例外を返す
-		if(process.waitFor()==1) throw new IllegalArgumentException();
+		if(process.waitFor()==1) throw new IllegalArgumentException("call mecab was fault");
 		// リストを返却して終了
 		return resultList;
+	}
+
+	// 引数の妥当性チェック
+	private boolean checkInputText(String inputText) {
+		// null、空文字、特殊記号が含まれている場合はエラーとする
+		String stopWord = ".*["
+				+ "!"
+				+ "\""
+				+ "\'"
+				+ "#"
+				+ "*"
+				+ "\\$"
+				+ "%"
+				+ "&"
+				+ "\\("
+				+ "\\)"
+				+ "-"
+				+ "\\^"
+				+ "\\"
+				+ "@"
+				+ "\\["
+				+ ";"
+				+ ":"
+				+ "\\]"
+				+ ","
+				+ "\\."
+				+ "/"
+				+ "].*";
+		if(inputText == null || inputText.equals("") || inputText.matches(stopWord)) {
+			return false;
+		}
+		return true;
 	}
 }
 

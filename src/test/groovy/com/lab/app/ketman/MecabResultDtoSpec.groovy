@@ -26,7 +26,7 @@ class MecabResultDtoSpec  extends Specification {
 		thrown(IllegalArgumentException)
 	}
 
-	def "引数が空のリストの場合に全項目空文字の入ったDTOを返すテスト"() {
+	def "MecabResultDtoSpec：引数が空のリストの場合に全項目空文字の入ったDTOを返すテスト"() {
 		setup:
 		String[] data = []
 		when:
@@ -52,14 +52,14 @@ class MecabResultDtoSpec  extends Specification {
 		mrd.getWordBasicForm() == blank
 	}
 
-	def "引数のリストが17項目以下であってもエラーが発生しないことの確認テスト"() {
+	def "MecabResultDtoSpec：引数のリストが17項目以下であってもエラーが発生しないことの確認テスト"() {
 		setup:
 		String[] data = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16"]
 		expect:
 		new MecabResultDto(data)
 	}
 
-	def "引数のリストが19項目以上あってもエラーが発生しないことの確認テスト"() {
+	def "MecabResultDtoSpec：引数のリストが19項目以上あってもエラーが発生しないことの確認テスト"() {
 		setup:
 		String[] data = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18"]
 		expect:
@@ -67,7 +67,7 @@ class MecabResultDtoSpec  extends Specification {
 	}
 
 	@Unroll
-	def "引数のバリエーションテスト：#testCaseのパタン"(
+	def "MecabResultDtoSpec：引数のバリエーションテスト：#testCaseのパタン"(
 			String i00,String i01,String i02,String i03,String i04,String i05,String i06,String i07,String i08,String i09,
 			String i10,String i11,String i12,String i13,String i14,String i15,String i16,String i17,
 			String m00,String m01,String m02,String m03,String m04,String m05,String m06,String m07,String m08,String m09,
