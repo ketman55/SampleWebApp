@@ -25,6 +25,8 @@ public class MecabResultDto{
 
 	// コンストラクタ
 	public MecabResultDto(String[] data){
+		// 引数がNULLの場合はエラーを返す
+		if( data == null ) throw new IllegalArgumentException();
 		// 作業用の箱
 		String[] allData = new String[18];
 		// AllDataに初期値を設定
