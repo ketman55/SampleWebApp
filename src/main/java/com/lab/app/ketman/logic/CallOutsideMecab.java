@@ -1,4 +1,4 @@
-package com.lab.app.ketman.mecab;
+package com.lab.app.ketman.logic;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,7 +16,7 @@ public class CallOutsideMecab {
 
 	public List<MecabResultDto> execute(String inputText) throws Exception{
 		// 引数の妥当性を確認
-		if(checkInputText(inputText) == false)throw new IllegalArgumentException("inputText is null");
+		if(checkInputText(inputText) == false)throw new IllegalArgumentException("inputText has something problem");
 
 		// mecabにかける
 		// Windowsの場合は cmd /c
@@ -37,26 +37,26 @@ public class CallOutsideMecab {
 		String[] command = {"bash", "-c", com};
 		System.out.println(com);
 
-		Process process = new ProcessBuilder(command).start();
-		InputStream is = process.getInputStream();
-		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader reader = new BufferedReader(isr);
+		try {
+			Process process = new ProcessBuilder(command).start();
+			InputStream is = process.getInputStream();
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader reader = new BufferedReader(isr);
 
-		// 結果をDTOへ格納
-		String c;
-		while ((c = reader.readLine()).equals("EOS") == false) {
-			//調査用：コンソールへ出力
-			System.out.println(c);
-			//タブとカンマで分割
-			String[] data = c.split("(\\t|,)");
-			//結果をDtoListに格納
-			MecabResultDto mrd = new MecabResultDto(data);
-			resultList.add(mrd);
+			// 結果をDTOへ格納
+			String c;
+			while ((c = reader.readLine()).equals("EOS") == false) {
+				//調査用：コンソールへ出力
+				System.out.println(c);
+				//タブとカンマで分割
+				String[] data = c.split("(\\t|,)");
+				//結果をDtoListに格納
+				MecabResultDto mrd = new MecabResultDto(data);
+				resultList.add(mrd);
+			}
+		}catch(Exception e) {
+			// Mecabが取れなくても200応答で返す
 		}
-
-		// 外部プロセスが異常終了した場合は例外を返す
-		if(process.waitFor()==1) throw new IllegalArgumentException("call mecab was fault");
-		// リストを返却して終了
 		return resultList;
 	}
 

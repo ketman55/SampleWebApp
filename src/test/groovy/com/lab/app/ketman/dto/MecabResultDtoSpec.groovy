@@ -1,4 +1,4 @@
-package com.lab.app.ketman
+package com.lab.app.ketman.dto
 import com.lab.app.ketman.dto.MecabResultDto
 
 import spock.lang.Shared
