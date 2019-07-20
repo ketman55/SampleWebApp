@@ -31,6 +31,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.8'
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
+	// 半角を全角にするためにICU4ｊをインストール
+	// https://mvnrepository.com/artifact/com.ibm.icu/icu4j
+	compile group: 'com.ibm.icu', name: 'icu4j', version: '51.1'
+
 	// for development
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

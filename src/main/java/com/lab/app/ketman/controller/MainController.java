@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lab.app.ketman.dto.MecabResultDto;
+import com.lab.app.ketman.logic.CallHankakuToZenkaku;
 import com.lab.app.ketman.logic.CallOutsideMecab;
 
 import io.swagger.annotations.ApiOperation;
@@ -22,11 +23,16 @@ public class MainController {
 	@GetMapping("/v1/analysis")
 	public List<MecabResultDto> GetAnalysedData(@RequestParam("inputText") String inputText) throws Exception {
 		try {
+			// 前処理（半角を全角に変換）
+			inputText = new CallHankakuToZenkaku().getZenkaku(inputText);
+
 			// mecab解析
 			CallOutsideMecab com = new CallOutsideMecab();
 			List<MecabResultDto> resultList = com.execute(inputText);
 
 			// 意味拾い
+
+
 
 			// 結果返却
 			return resultList;

@@ -62,31 +62,7 @@ public class CallOutsideMecab {
 
 	// 引数の妥当性チェック
 	private boolean checkInputText(String inputText) {
-		// null、空文字、特殊記号が含まれている場合はエラーとする
-		String stopWord = ".*["
-				+ "!"
-				+ "\""
-				+ "\'"
-				+ "#"
-				+ "*"
-				+ "\\$"
-				+ "%"
-				+ "&"
-				+ "\\("
-				+ "\\)"
-				+ "-"
-				+ "\\^"
-				+ "\\"
-				+ "@"
-				+ "\\["
-				+ ";"
-				+ ":"
-				+ "\\]"
-				+ ","
-				+ "\\."
-				+ "/"
-				+ "].*";
-		if(inputText == null || inputText.equals("") || inputText.matches(stopWord)) {
+		if(inputText == null || inputText.equals("")) {
 			return false;
 		}
 		return true;

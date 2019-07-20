@@ -46,7 +46,7 @@ class MainControllerSpec  extends Specification {
 		url		|paramName	|paramVal	|status		|testCase
 		point	|"Dammy"	|blank		|400		|"パラメータ誤り"
 		point	|"inputText"|blank		|500		|"パラメータ設定（値なし）"
-		point	|"inputText"|"@"		|500		|"パラメータ設定（値あり：異常文字）"
+		point	|"inputText"|"@"		|200		|"パラメータ設定（値あり：半角）"
 		point	|"inputText"|"あああ"	|200		|"パラメータ設定（値あり：正常系）"
 	}
 }

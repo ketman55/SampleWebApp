@@ -20,7 +20,6 @@ class CallOutSideMecabSpec  extends Specification {
 		notThrown(Exception)
 		where:
 		inputText	| testCase
-		"a"			| "最小半角"
 		"あ"		| "最小全角"
 		"あbckteいおらｇｒごいばんれ；＠：・１８４０５ん。"	| "適当な文字列"
 	}
@@ -37,29 +36,5 @@ class CallOutSideMecabSpec  extends Specification {
 		inputText	| testCase
 		null		| "null"
 		blank		| "空文字"
-		"!"			| "!"
-		"\""		| "\""
-		"\'"		| "\'"
-		"#"			| "#"
-		"*"			| "*"
-		"\$"		| "\$"
-		"%"			| "%"
-		"&"			| "&"
-		"("			| "("
-		")"			| ")"
-		"-"			| "-"
-		"^"			| "^"
-		"\\"		| "\\"
-		"@"			| "@"
-		"["			| "["
-		";"			| ";"
-		":"			| ":"
-		"]"			| "]"
-		","			| ","
-		"."			| "."
-		"/"			| "/"
-		"ああ/"		| "文字＋記号"
-		"/ああ"		| "記号＋文字"
-		"あ/あ"		| "文字＋記号＋文字"
 	}
 }
