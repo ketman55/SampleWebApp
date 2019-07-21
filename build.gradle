@@ -35,6 +35,12 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.ibm.icu/icu4j
 	compile group: 'com.ibm.icu', name: 'icu4j', version: '51.1'
 
+	// インメモリDBを使用するためにH2とmybatisをインストール
+	// https://mvnrepository.com/artifact/com.h2database/h2
+	compile group: 'com.h2database', name: 'h2', version: '1.4.199'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+
+
 	// for development
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
