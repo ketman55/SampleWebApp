@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lab.app.ketman.common.CallHankakuToZenkaku;
 import com.lab.app.ketman.dto.MecabResultDto;
-import com.lab.app.ketman.logic.CallHankakuToZenkaku;
 import com.lab.app.ketman.logic.CallOutsideMecab;
 
 import io.swagger.annotations.ApiOperation;

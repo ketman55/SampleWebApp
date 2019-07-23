@@ -1,4 +1,4 @@
-package com.lab.app.ketman.logic;
+package com.lab.app.ketman.common;
 
 import com.ibm.icu.text.Transliterator;
 
