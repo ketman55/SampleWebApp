@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,9 @@ public class MeaningConverter {
 							);
 					mcdList.add(mcd);
 					System.out.println("mcd log " + mcd.getId() + mcd.getWord());
-				}catch(Exception e){
+				}catch(EmptyResultDataAccessException e){
 					// 見つからなかった場合
+					System.out.println(mrdList.get(i).getOriginal());
 				}
 			}
 		}

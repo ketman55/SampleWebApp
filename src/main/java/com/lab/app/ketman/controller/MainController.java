@@ -29,15 +29,18 @@ public class MainController {
 	private MeaningConverter mc;
 
 	// @ApiOperationでリソースの概要を設定
-    @ApiOperation(value = "フロントエンドから古文データを受け取って解析結果を返却する")
+	@ApiOperation(value = "フロントエンドから古文データを受け取って解析結果を返却する")
 	@GetMapping("/v1/analysis")
-	public AnalysisReturnDto GetAnalysedData(@RequestParam("inputText") String inputText) throws Exception {
+	public AnalysisReturnDto GetAnalysedData(
+			@RequestParam("dicType") String dicType,
+			@RequestParam("inputText") String inputText)
+					throws Exception {
 		try {
 			// 前処理（半角を全角に変換）
 			inputText = new CallHankakuToZenkaku().getZenkaku(inputText);
 			// mecab解析
 			com = new CallOutsideMecab();
-			List<MecabResultDto> mrdList = com.execute(inputText);
+			List<MecabResultDto> mrdList = com.execute(dicType, inputText);
 			// 現代語訳をあてに行く
 			List<MeaningConverterDto> mcdList = mc.execute(mrdList);
 			mc = new MeaningConverter();
@@ -48,9 +51,9 @@ public class MainController {
 		}
 	}
 
-    // アクセスポイント指定なしで来た場合もエラーを返す
+	// アクセスポイント指定なしで来た場合もエラーを返す
 	@GetMapping("/")
 	public List<MecabResultDto> BlankAccessPoint() throws Exception {
-			throw new MethodArgumentNotValidException (null, null);
+		throw new MethodArgumentNotValidException (null, null);
 	}
 }

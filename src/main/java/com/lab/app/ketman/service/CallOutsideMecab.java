@@ -13,17 +13,17 @@ import com.lab.app.ketman.dto.MecabResultDto;
 
 @Service
 public class CallOutsideMecab {
+	private final String WAKAN = "/usr/local/lib/UniDic-wakan_1603";
+	private final String WABUN = "/usr/local/lib/UniDic-wabun_1603";
+
 	ArrayList<MecabResultDto> resultList = new ArrayList<MecabResultDto>();
 
-	public List<MecabResultDto> execute(String inputText) throws Exception{
+	public List<MecabResultDto> execute(String dicType, String inputText) throws Exception{
 		// 引数の妥当性を確認
 		CheckInputText cit = new CheckInputText();
 		if(cit.execute(inputText) == false)throw new IllegalArgumentException("CallOutsideMecab：inputText has something problem");
 
 		// mecabにかける
-		// Windowsの場合は cmd /c
-		//String[] command = {"cmd", "/c", "echo", inputText,"|", "mecab", "-d", "src\\main\\resources\\UniDic-wabun_1603"};
-		//CentOSの場合は bash -c command(ひと囲みにすること)
 		String com =
 				"echo"
 						+ " "
@@ -34,8 +34,16 @@ public class CallOutsideMecab {
 						+ "mecab"
 						+ " "
 						+ "-d"
-						+ " "
-						+ "/usr/local/lib/UniDic-wabun_1603";
+						+ " ";
+
+		// 辞書タイプの判定
+		if(dicType.equals("WAKAN")) {
+			com += WAKAN;
+		}else if(dicType.equals("WABUN")) {
+			com += WABUN;
+		}else {
+			throw new IllegalArgumentException("CallOutsideMecab：DicType is wrong");
+		}
 		String[] command = {"bash", "-c", com};
 		System.out.println(com);
 

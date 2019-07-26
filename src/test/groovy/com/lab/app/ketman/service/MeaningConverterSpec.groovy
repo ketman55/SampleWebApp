@@ -3,6 +3,7 @@ package com.lab.app.ketman.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
+import com.lab.app.ketman.dto.MeaningConverterDto
 import com.lab.app.ketman.dto.MecabResultDto
 
 import spock.lang.Shared
@@ -20,8 +21,6 @@ class MeaningConverterSpec  extends Specification {
 	MeaningConverter mc = new MeaningConverter()
 
 	def "MeaningConverterSpec　MecabResultDtoがnullの場合"() {
-		setup:
-		MeaningConverter mc = new MeaningConverter()
 		when:
 		mc.execute(null)
 		then:
@@ -29,21 +28,24 @@ class MeaningConverterSpec  extends Specification {
 	}
 
 	@Unroll
-	def "MeaningConverterSpec　MecabResultDtoの引数 #testCase"(String original, String testCase) {
+	def "MeaningConverterSpec　MecabResultDtoの引数 #testCase"(
+		String original,
+		int listNum,
+		String testCase) {
 		setup:
 		MecabResultDto mrd = new MecabResultDto();
 		ArrayList<MecabResultDto> mrdList = new ArrayList<MecabResultDto>()
 		when:
 		mrd.setOriginal(original)
 		mrdList.add(mrd)
-		mc.execute(mrdList)
+		List<MeaningConverterDto> resultList = mc.execute(mrdList)
 		then:
-		notThrown(Exception)
+		resultList.size() == listNum
 		where:
-		original							| testCase
-		null								| "null"
-		blank								| "空文字"
-		"おかし"								| "DBに入っている値"
-		"okashi"							| "DBに入っていない値"
+		original	|listNum	| testCase
+		null		|0			| "null"
+		blank		|0			| "空文字"
+		"testword"	|1			| "DBに入っている値（1件）"
+		"okashi"	|0			| "DBに入っていない値"
 	}
 }
