@@ -47,6 +47,6 @@ class MainControllerSpec  extends Specification {
 		point	|"Dammy"	|blank		|400		|"パラメータ誤り"
 		point	|"inputText"|blank		|500		|"パラメータ設定（値なし）"
 		point	|"inputText"|"@"		|200		|"パラメータ設定（値あり：半角）"
-		point	|"inputText"|"あああ"	|200		|"パラメータ設定（値あり：正常系）"
+		point	|"inputText"|"あああ"		|200		|"パラメータ設定（値あり：全角）"
 	}
 }

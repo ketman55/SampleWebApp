@@ -38,8 +38,7 @@ dependencies {
 	// インメモリDBを使用するためにH2とmybatisをインストール
 	// https://mvnrepository.com/artifact/com.h2database/h2
 	compile group: 'com.h2database', name: 'h2', version: '1.4.199'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
-
+	compile 'org.springframework.boot:spring-boot-starter-jdbc'
 
 	// for development
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

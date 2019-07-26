@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.lab.app.ketman.common.CheckInputText;
 import com.lab.app.ketman.dto.MecabResultDto;
 
 @Service
@@ -16,7 +17,8 @@ public class CallOutsideMecab {
 
 	public List<MecabResultDto> execute(String inputText) throws Exception{
 		// 引数の妥当性を確認
-		if(checkInputText(inputText) == false)throw new IllegalArgumentException("inputText has something problem");
+		CheckInputText cit = new CheckInputText();
+		if(cit.execute(inputText) == false)throw new IllegalArgumentException("CallOutsideMecab：inputText has something problem");
 
 		// mecabにかける
 		// Windowsの場合は cmd /c
@@ -58,14 +60,6 @@ public class CallOutsideMecab {
 			// Mecabが取れなくても200応答で返す
 		}
 		return resultList;
-	}
-
-	// 引数の妥当性チェック
-	private boolean checkInputText(String inputText) {
-		if(inputText == null || inputText.equals("")) {
-			return false;
-		}
-		return true;
 	}
 }
 
