@@ -1,4 +1,4 @@
-package com.lab.app.ketman.logic
+package com.lab.app.ketman.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -43,5 +43,7 @@ class MeaningConverterSpec  extends Specification {
 		original							| testCase
 		null								| "null"
 		blank								| "空文字"
+		"おかし"								| "DBに入っている値"
+		"okashi"							| "DBに入っていない値"
 	}
 }

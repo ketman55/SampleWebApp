@@ -1,4 +1,4 @@
-package com.lab.app.ketman.logic;
+package com.lab.app.ketman.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,11 @@ import com.lab.app.ketman.dto.MecabResultDto;
 
 @Service
 public class MeaningConverter {
-	private final static String TABLE = "WORD_DICTIONARY";
-	private static final String SELECT_SQL = "SELECT * FROM WORD_DICTIONARY WHERE ID = \"1\"";
-
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public List<MeaningConverterDto> execute(List<MecabResultDto> mrdList) {
-		ArrayList<MeaningConverterDto> rcdList = new ArrayList<MeaningConverterDto>();
+		ArrayList<MeaningConverterDto> mcdList = new ArrayList<MeaningConverterDto>();
 		// 引数チェック
 		if(mrdList == null) {
 
@@ -31,19 +28,27 @@ public class MeaningConverter {
 				if(mrdList == null || mrdList.get(i).getOriginal() == null || mrdList.get(i).getOriginal().equals("")) continue;
 
 				// DB検索
-				Map<String, Object> actualData = this.jdbcTemplate.queryForMap(SELECT_SQL);
-				// 見つからなかった場合
-				if(actualData.isEmpty()) continue;
+				try {
+					String SELECT_SQL = "SELECT * FROM WORD_DICTIONARY WHERE WORD = "
+							+ "\'"
+							+ mrdList.get(i).getOriginal()
+							+ "\'";
 
-				// 見つかった場合
-				MeaningConverterDto mcd = new MeaningConverterDto(
-						actualData.get("ID").toString(),
-						actualData.get("WORD").toString(),
-						actualData.get("MEANING").toString()
-						);
-				rcdList.add(mcd);
+					Map<String, Object> actualData = this.jdbcTemplate.queryForMap(SELECT_SQL);
+					// 見つかった場合
+					MeaningConverterDto mcd = new MeaningConverterDto(
+							Integer.toString(i),
+							actualData.get("ID").toString(),
+							actualData.get("WORD").toString(),
+							actualData.get("MEANING").toString()
+							);
+					mcdList.add(mcd);
+					System.out.println("mcd log " + mcd.getId() + mcd.getWord());
+				}catch(Exception e){
+					// 見つからなかった場合
+				}
 			}
 		}
-		return rcdList;
+		return mcdList;
 	}
 }

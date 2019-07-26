@@ -1,6 +1,4 @@
 package com.lab.app.ketman.dto
-import com.lab.app.ketman.dto.MecabResultDto
-
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -21,7 +19,7 @@ class MecabResultDtoSpec  extends Specification {
 		setup:
 		String[] data = null
 		when:
-		new MecabResultDto(data)
+		new MecabResultDto(blank, data)
 		then:
 		thrown(IllegalArgumentException)
 	}
@@ -30,8 +28,9 @@ class MecabResultDtoSpec  extends Specification {
 		setup:
 		String[] data = []
 		when:
-		def mrd = new MecabResultDto(data)
+		def mrd = new MecabResultDto(blank, data)
 		then:
+		mrd.getListNo() == blank
 		mrd.getSurface() == blank
 		mrd.getPartOfSpeechMain() == blank
 		mrd.getPartOfSpeechSub1() == blank
@@ -56,14 +55,14 @@ class MecabResultDtoSpec  extends Specification {
 		setup:
 		String[] data = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16"]
 		expect:
-		new MecabResultDto(data)
+		new MecabResultDto(blank,data)
 	}
 
 	def "MecabResultDtoSpec：引数のリストが19項目以上あってもエラーが発生しないことの確認テスト"() {
 		setup:
 		String[] data = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18"]
 		expect:
-		new MecabResultDto(data)
+		new MecabResultDto(blank,data)
 	}
 
 	@Unroll
@@ -76,7 +75,7 @@ class MecabResultDtoSpec  extends Specification {
 	) {
 		when:
 		String[] data = [i00, i01,i02,i03,i04,i05,i06,i07,i08,i09,i10,i11,i12,i13,i14,i15,i16,i17]
-		def mrd = new MecabResultDto(data)
+		def mrd = new MecabResultDto(blank,data)
 		then:
 		mrd.getSurface() == m00
 		mrd.getPartOfSpeechMain() == m01

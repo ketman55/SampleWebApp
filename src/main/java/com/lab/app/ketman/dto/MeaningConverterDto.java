@@ -4,13 +4,15 @@ import lombok.Data;
 
 @Data
 public class MeaningConverterDto {
+	private String listNo;
 	private String id;
-	private String title;
+	private String word;
 	private String meaning;
 
-	public MeaningConverterDto(String id, String title, String meaning){
+	public MeaningConverterDto(String listNo, String id, String word, String meaning){
+		this.listNo = listNo;
 		this.id = id;
-		this.title = title;
+		this.word = word;
 		this.meaning = meaning;
 	}
 }

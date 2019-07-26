@@ -1,4 +1,4 @@
-package com.lab.app.ketman.logic;
+package com.lab.app.ketman.service;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -46,6 +46,7 @@ public class CallOutsideMecab {
 			BufferedReader reader = new BufferedReader(isr);
 
 			// 結果をDTOへ格納
+			int count = 1;
 			String c;
 			while ((c = reader.readLine()).equals("EOS") == false) {
 				//調査用：コンソールへ出力
@@ -53,8 +54,9 @@ public class CallOutsideMecab {
 				//タブとカンマで分割
 				String[] data = c.split("(\\t|,)");
 				//結果をDtoListに格納
-				MecabResultDto mrd = new MecabResultDto(data);
+				MecabResultDto mrd = new MecabResultDto(Integer.toString(count), data);
 				resultList.add(mrd);
+				count++;
 			}
 		}catch(Exception e) {
 			// Mecabが取れなくても200応答で返す

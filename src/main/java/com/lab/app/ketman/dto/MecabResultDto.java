@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class MecabResultDto{
+	private String listNo;//表示順
 	private String surface;//表層
 	private String partOfSpeechMain;//主たる品詞
 	private String partOfSpeechSub1;//品詞１
@@ -24,9 +25,12 @@ public class MecabResultDto{
 	private String wordBasicForm;//語形(基本形)
 
 	// コンストラクタ
-	public MecabResultDto(String[] data){
+	public MecabResultDto(){}
+
+	// コンストラクタ
+	public MecabResultDto(String listNo, String[] data){
 		// 引数がNULLの場合はエラーを返す
-		if( data == null ) throw new IllegalArgumentException("リストがNULLです");
+		if( listNo == null || data == null ) throw new IllegalArgumentException("リストがNULLです");
 		// 作業用の箱
 		String[] allData = new String[18];
 		// AllDataに初期値を設定
@@ -45,6 +49,7 @@ public class MecabResultDto{
 			}
 		}
 		// 各変数へ値を設定
+		this.listNo = listNo;
 		this.surface = allData[0];
 		this.partOfSpeechMain = allData[1];
 		this.partOfSpeechSub1 = allData[2];

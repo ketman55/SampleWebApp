@@ -1,4 +1,6 @@
-package com.lab.app.ketman.logic
+package com.lab.app.ketman.service
+
+import com.lab.app.ketman.service.CallOutsideMecab
 
 import spock.lang.Shared
 import spock.lang.Specification
