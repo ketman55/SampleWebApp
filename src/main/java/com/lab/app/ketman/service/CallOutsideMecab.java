@@ -16,9 +16,9 @@ public class CallOutsideMecab {
 	private final String WAKAN = "/usr/local/lib/UniDic-wakan_1603";
 	private final String WABUN = "/usr/local/lib/UniDic-wabun_1603";
 
-	ArrayList<MecabResultDto> resultList = new ArrayList<MecabResultDto>();
-
 	public List<MecabResultDto> execute(String dicType, String inputText) throws Exception{
+		ArrayList<MecabResultDto> resultList = new ArrayList<MecabResultDto>();
+
 		// 引数の妥当性を確認
 		CheckInputText cit = new CheckInputText();
 		if(cit.execute(inputText) == false)throw new IllegalArgumentException("CallOutsideMecab：inputText has something problem");
@@ -54,7 +54,7 @@ public class CallOutsideMecab {
 			BufferedReader reader = new BufferedReader(isr);
 
 			// 結果をDTOへ格納
-			int count = 1;
+			int count = 0;
 			String c;
 			while ((c = reader.readLine()).equals("EOS") == false) {
 				//調査用：コンソールへ出力

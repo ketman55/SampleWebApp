@@ -39,11 +39,9 @@ public class MainController {
 			// 前処理（半角を全角に変換）
 			inputText = new CallHankakuToZenkaku().getZenkaku(inputText);
 			// mecab解析
-			com = new CallOutsideMecab();
 			List<MecabResultDto> mrdList = com.execute(dicType, inputText);
 			// 現代語訳をあてに行く
 			List<MeaningConverterDto> mcdList = mc.execute(mrdList);
-			mc = new MeaningConverter();
 			// 結果返却
 			return new AnalysisReturnDto(mrdList, mcdList);
 		} catch (Exception e) {
