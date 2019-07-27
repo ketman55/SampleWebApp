@@ -15,6 +15,7 @@ import com.lab.app.ketman.dto.MecabResultDto;
 public class CallOutsideMecab {
 	private final String WAKAN = "/usr/local/lib/UniDic-wakan_1603";
 	private final String WABUN = "/usr/local/lib/UniDic-wabun_1603";
+	private final String MANYO = "/usr/local/lib/UniDic-manyo_1603";
 
 	public List<MecabResultDto> execute(String dicType, String inputText) throws Exception{
 		ArrayList<MecabResultDto> resultList = new ArrayList<MecabResultDto>();
@@ -41,6 +42,8 @@ public class CallOutsideMecab {
 			com += WAKAN;
 		}else if(dicType.equals("WABUN")) {
 			com += WABUN;
+		}else if(dicType.equals("MANYO")) {
+			com += MANYO;
 		}else {
 			throw new IllegalArgumentException("CallOutsideMecab：DicType is wrong");
 		}

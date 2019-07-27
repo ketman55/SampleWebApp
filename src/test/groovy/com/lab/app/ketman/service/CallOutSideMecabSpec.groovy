@@ -25,9 +25,11 @@ class CallOutSideMecabSpec  extends Specification {
 		dicType	| inputText							| testCase
 		"WAKAN"	|"あ"								| "最小全角"
 		"WABUN"	|"あ"								| "最小全角"
+		"MANYO"	|"あ"								| "最小全角"
 		"WAKAN"	|"あbckteいおらｇｒごいばんれ；＠：・１８４０５ん。"	| "適当な文字列"
 		"WABUN"	|"あbckteいおらｇｒごいばんれ；＠：・１８４０５ん。"	| "適当な文字列"
-	}
+		"MANYO"	|"あbckteいおらｇｒごいばんれ；＠：・１８４０５ん。"	| "適当な文字列"
+			}
 
 	@Unroll
 	def "CallOutSideMecabSpec：引数チェックに引っかかってIllegalArgumentExceptionを返すテスト #testCaseのパタン"(
