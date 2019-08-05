@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ public class MainController {
 
 	// @ApiOperationでリソースの概要を設定
 	@ApiOperation(value = "フロントエンドから古文データを受け取って解析結果を返却する")
+	@CrossOrigin
 	@GetMapping("/v1/analysis")
 	public AnalysisReturnDto GetAnalysedData(
 			@RequestParam("dicType") String dicType,
@@ -49,7 +51,7 @@ public class MainController {
 		}
 	}
 
-	// アクセスポイント指定なしで来た場合もエラーを返す
+	@CrossOrigin
 	@GetMapping("/")
 	public List<MecabResultDto> BlankAccessPoint() throws Exception {
 		throw new MethodArgumentNotValidException (null, null);

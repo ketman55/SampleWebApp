@@ -43,9 +43,9 @@ class MeaningConverterSpec  extends Specification {
 		resultList.size() == listNum
 		where:
 		original	|listNum	| testCase
-		null		|0			| "null"
-		blank		|0			| "空文字"
+		null		|1			| "null"
+		blank		|1			| "空文字"
 		"testword"	|1			| "DBに入っている値（1件）"
-		"okashi"	|0			| "DBに入っていない値"
+		"okashi"	|1			| "DBに入っていない値"
 	}
 }
