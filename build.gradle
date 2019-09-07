@@ -56,8 +56,6 @@ dependencies {
 }
 
 // JarでWebサーバへ配置する
-jar {
-	manifest {
-		attributes 'Main-Class': 'com.lab.app.ketman.SampleWebAppApplication'
-	}
+bootJar {
+	launchScript()
 }
