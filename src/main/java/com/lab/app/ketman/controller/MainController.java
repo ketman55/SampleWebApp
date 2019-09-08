@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,6 @@ import com.lab.app.ketman.service.MeaningConverter;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value = {"/v1/analysis","/"})
 public class MainController {
 
 	@Autowired
@@ -31,7 +29,7 @@ public class MainController {
 
 	// @ApiOperationでリソースの概要を設定
 	@ApiOperation(value = "フロントエンドから古文データを受け取って解析結果を返却する")
-	@CrossOrigin
+	@CrossOrigin // クロスサイトスクリプティング対応
 	@GetMapping("/v1/analysis")
 	public AnalysisReturnDto GetAnalysedData(
 			@RequestParam("dicType") String dicType,
@@ -51,7 +49,8 @@ public class MainController {
 		}
 	}
 
-	@CrossOrigin
+	// URL指定の無いリクエストに対してエラーを返す
+	@CrossOrigin // クロスサイトスクリプティング対応
 	@GetMapping("/")
 	public List<MecabResultDto> BlankAccessPoint() throws Exception {
 		throw new MethodArgumentNotValidException (null, null);
